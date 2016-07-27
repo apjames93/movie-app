@@ -1,20 +1,17 @@
-routerApp.controller('SearchController', ["$scope", "$http",  "shareDataService", "$stateParams", function($scope, $http, $stateParams, shareDataService) {
+routerApp.controller('SearchController', ["$scope", "$http",  "shareDataService", "$stateParams", function($scope, $http, shareDataService, $stateParams) {
     $scope.test = "winning again";
 
 
     $scope.findMovie = function(movieSearch){
-      var movieData ={};
-      return $http.get('http://www.omdbapi.com/?s='+ movieSearch).then(function(data){
-       $scope.movieData = data;
-        // console.log($scope.movieData.data.Search[0].Title, data);
-        // console.log(data);
-        console.log(shareDataService);
-
-
+      console.log(movieSearch);
+      // var movieData ={};
+      var movieName = movieSearch.title;
+      shareDataService.httpGetRequest(movieName)
+        .then(function(data){
+          console.log(data);
+          $scope.movieData = data;
+          shareDataService.moveMovies($scope.movieData);
       });
     };
-
-
-
-
+    console.log(shareDataService);
 }]);

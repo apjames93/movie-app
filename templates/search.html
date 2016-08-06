@@ -1,0 +1,9 @@
+<div class="movieResults" >
+  <div class="listItem" ng-repeat="data in home.movieResults">
+    <a ng-href="/show/{{ data.imdbID }}" ng-click="home.transferId(data.imdbID)">
+      <ul class="movie">
+        <li> {{ data.Title }} </li>
+        <li> {{ data.Year }} </li>
+      </ul>
+    </a>
+</div>
